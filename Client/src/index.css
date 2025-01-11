@@ -1,0 +1,10 @@
+.my-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: auto;
+    padding: 0px 40px;
+    width: calc(100% - 200px);
+    transition: margin-left 0.3s ease, width 0.3s ease;
+    height: 100vw;
+  }

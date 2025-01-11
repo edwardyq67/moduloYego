@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+  .input-personalizado {
+    @apply bg-[#f5f4f4] w-full p-2 pl-3 border rounded-2xl focus:outline-none;
+  }
+
+  /* Estilos personalizados para el placeholder */
+  .input-personalizado::placeholder {
+    @apply font-medium text-[#646464];
+  }
+}

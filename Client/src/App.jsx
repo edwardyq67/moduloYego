@@ -1,6 +1,8 @@
 import './App.css';
-import React, { useState, lazy, Suspense } from 'react'; // Importa lazy y Suspense
+import { lazy, Suspense } from 'react'; // Importa lazy y Suspense
 import { HashRouter, Route, Routes } from 'react-router-dom';
+import { UsePixelarSiber } from './store/Sibar';
+import { UseModal } from './store/Modal';
 import ModalInstanciaQR from './comunicaciones/modal/ModalInstanciaQR';
 
 // Carga dinámica de componentes
@@ -9,11 +11,10 @@ const Modulo = lazy(() => import('./pages/Modulo'));
 const Sibar = lazy(() => import('./pages/Sibar'));
 
 function App() {
-  // Estado para controlar si la barra lateral está expandida o contraída
-  const [pixelesSiber, setPixelSiber] = useState(true);
-  const [siberNav,SetSiberNav]=useState([])
-  const [valorModulo,setValorModulo]=useState(1)
-  const anchoSibar = pixelesSiber ? '10px' : '200px';
+  const pixelesSiber=UsePixelarSiber(state=>state.pixelesSiber)
+//  modal Activacion
+const isOpen=UseModal((state)=>state.isOpen);
+  const anchoSibar = pixelesSiber ? '200px' : '10px';
 
   // Estilos en línea para el contenedor principal
   const styles = {
@@ -38,11 +39,11 @@ function App() {
             path="*"
             element={
               <div style={{ display: 'flex' }}>
-                <Sibar setPixelSiber={setPixelSiber} siberNav={siberNav} setValorModulo={setValorModulo}/>
-                {/* <ModalInstanciaQR/> */}
+                <Sibar/>
+                {isOpen&& <ModalInstanciaQR/> }
                 <div style={styles.container}>
                   <Routes>
-                    <Route path="/modulo" element={<Modulo SetSiberNav={SetSiberNav} valorModulo={valorModulo}/>} />
+                    <Route path="/modulo" element={<Modulo/>} />
                   </Routes>
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+
 import estrella from '../Imagenes/Todos/estrella.webp'
 import yegoLogo from '../Imagenes/Todos/yegoLogo.webp'
 import { useNavigate } from 'react-router-dom';

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Base URL para la API
-const API_URL = "http://10.10.2.59:5000/api";
+const API_URL = "http://localhost:5001/api";
 
 export const fetchInstances = async () => {
     try {

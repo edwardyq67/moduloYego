@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect } from 'react';
 import { fetchInstances } from '../api/api';
 import Instancias from './Instancias';
-import { useComunicacionesStore } from '../store/Comunicaciones';
+import { useComunicacionesStore, useInstanciaQR } from '../store/Comunicaciones';
+import { UseSibar } from '../store/Sibar';
 
-function Comunicaciones({ valorModulo }) {
-  const [dataInstancia, setDataInstancia] = useState([]);
+function Comunicaciones() {
 
   // Obtén el estado y las acciones del store
   const valor = useComunicacionesStore((state) => state.valor);
   const toggleValor = useComunicacionesStore((state) => state.toggleValor);
+  const valorModulo=UseSibar((state) => state.valorModulo)
+  const setdataInstancia = useInstanciaQR((state) => state.setDataInstancia);
 
   useEffect(() => {
     // Define una función async para obtener los datos
     const fetchData = async () => {
       try {
         const data = await fetchInstances();
-        setDataInstancia(data);
+        setdataInstancia(data);
       } catch (error) {
         console.error('Error al obtener las instancias:', error);
       }
@@ -28,7 +30,7 @@ function Comunicaciones({ valorModulo }) {
     <>
       {valorModulo == 1 ? (
         <div>
-          <Instancias dataInstancia={dataInstancia} />
+          <Instancias />
         </div>
       ) : valorModulo == 2 ? (
         <div>

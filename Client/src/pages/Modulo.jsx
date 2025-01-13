@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import ModuloRegarga from '../Imagenes/modulo/ModuloRegarga.webp'
 import ModuloComunicaciones from '../Imagenes/modulo/ModuloComunicaciones.webp'
 import ModuloPrestamos from '../Imagenes/modulo/ModuloPrestamos.webp'
@@ -12,9 +12,11 @@ import { MdDashboard } from "react-icons/md";
 import { IoLogoWhatsapp } from "react-icons/io5";
 import { BsTelephone } from "react-icons/bs";
 import Comunicaciones from '../comunicaciones/Comunicaciones'
-function Modulo({SetSiberNav,valorModulo}) {
+import { UseSibar } from '../store/Sibar'
+function Modulo() {
     const [NModulo, setNModulo] = useState("Yego")
     const [id, setId] = useState(0)
+    const SetSiberNav=UseSibar((state)=>state.setSiberNav)
     const ModulosImagenes = [
         {
             id: 1,
@@ -103,7 +105,7 @@ function Modulo({SetSiberNav,valorModulo}) {
                         </div>
                     ))
                 }
-            </div> : id==2?<Comunicaciones valorModulo={valorModulo}/>:""}
+            </div> : id==2?<Comunicaciones/>:""}
 
         </main>
       

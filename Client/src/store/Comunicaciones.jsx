@@ -9,4 +9,6 @@ export const useComunicacionesStore = create((set) => ({
 export const useInstanciaQR = create((set) => ({
     qrBase64: '',
     setQrBase64: (base64) => set({ qrBase64: base64 }),
+    dataInstancia:[],
+    setDataInstancia: (data) => set({ dataInstancia: data }),
   }));

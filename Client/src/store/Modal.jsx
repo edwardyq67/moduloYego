@@ -6,3 +6,8 @@ export const UseModal=create((set=>({
     modalContent: [],
     setModalContent: (content) => set({ modalContent: content }),
 })))
+
+export const UseSlider = create((set) => ({
+    isOpenSlider: false,
+    setIsOpenSlider: (value) => set({ isOpenSlider: value }), 
+  }));

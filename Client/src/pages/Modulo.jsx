@@ -13,10 +13,14 @@ import { IoLogoWhatsapp } from "react-icons/io5";
 import { BsTelephone } from "react-icons/bs";
 import Comunicaciones from '../comunicaciones/Comunicaciones'
 import { UseSibar } from '../store/Sibar'
+import { UseSlider } from '../store/Modal'
 function Modulo() {
     const [NModulo, setNModulo] = useState("Yego")
     const [id, setId] = useState(0)
     const SetSiberNav=UseSibar((state)=>state.setSiberNav)
+      //Slider activacion
+      const setIsOpenSlider = UseSlider((state) => state.setIsOpenSlider);
+    
     const ModulosImagenes = [
         {
             id: 1,
@@ -97,6 +101,7 @@ function Modulo() {
                             setId(modulo.id);
                             setNModulo(modulo.titulo);
                             SetSiberNav(modulo.nav);
+                            setIsOpenSlider(true)
                         }} className='bg-white shadow-lg gap-5 transition-all duration-200 hover:scale-[1.02] cursor-pointer rounded-xl flex p-5 justify-around items-center'>
                             <img width={160}
                                 loading="lazy"

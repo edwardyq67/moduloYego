@@ -2,8 +2,9 @@ import './App.css';
 import { lazy, Suspense } from 'react'; // Importa lazy y Suspense
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import { UsePixelarSiber } from './store/Sibar';
-import { UseModal } from './store/Modal';
+import { UseModal, UseSlider } from './store/Modal';
 import ModalInstanciaQR from './comunicaciones/modal/ModalInstanciaQR';
+import Slider from './components/Slider';
 
 // Carga dinámica de componentes
 const Login = lazy(() => import('./Login/Login'));
@@ -14,6 +15,8 @@ function App() {
   const pixelesSiber=UsePixelarSiber(state=>state.pixelesSiber)
 //  modal Activacion
 const isOpen=UseModal((state)=>state.isOpen);
+//modal Slider
+const isOpenSlider=UseSlider((state)=>state.isOpenSlider)
   const anchoSibar = pixelesSiber ? '200px' : '10px';
 
   // Estilos en línea para el contenedor principal
@@ -29,7 +32,7 @@ const isOpen=UseModal((state)=>state.isOpen);
       height: '100vh', // Altura completa de la ventana
     },
   };
-
+console.log(isOpenSlider)
   return (
     <HashRouter>
       <Suspense fallback={<div>Cargando...</div>}>
@@ -41,6 +44,7 @@ const isOpen=UseModal((state)=>state.isOpen);
               <div style={{ display: 'flex' }}>
                 <Sibar/>
                 {isOpen&& <ModalInstanciaQR/> }
+                {isOpenSlider&&<Slider/>}
                 <div style={styles.container}>
                   <Routes>
                     <Route path="/modulo" element={<Modulo/>} />
